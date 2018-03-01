@@ -31,6 +31,8 @@ function submitSelections() {
 
   var name = document.getElementById("name");
   selectionsJson["name"] = name.value;
+  var password = document.getElementById("password");
+  selectionsJson["password"] = password.value;
 
   console.log(selectionsJson)
 
@@ -44,8 +46,8 @@ function submitSelections() {
     success: function() {
       alert("Selections successfully submitted");
     },
-    error: function(err) {
-      alert("Submission failed");
+    error: function(err, msg, code) {
+      alert("Submission failed: " + code);
     }
   });
 
