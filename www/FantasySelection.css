@@ -1,3 +1,35 @@
+
+body {
+    background-color: #e8e8e8;
+}
+
+h1 {
+    margin: 0 auto;
+    padding: 30px;
+}
+
+div.userinfo {
+    padding: 15px;
+}
+
+div.column {
+    background-color: #bcdbda;
+    -moz-box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+    -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+    box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+    width: 40%;
+    margin: 0 auto;
+}
+
 div.category {
-  padding: 25px;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+button#submit {
+    margin: 0 auto;
+    display: block;
+
 }

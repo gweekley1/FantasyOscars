@@ -8,6 +8,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use(express.static("www"));
 
+/**
+ *
+ */
 app.post("/submit", function(req, res){
 
     var results = req.body;
@@ -15,7 +18,7 @@ app.post("/submit", function(req, res){
     results["create_date"] = new Date();
 
     var file = __dirname + "/results/" + results.name + ".txt";
-    if (checkPassword(results)) {
+    if (checkPassword(results, file)) {
 
         fs.writeFile(file, JSON.stringify(results), function(err){
           if (err) {
@@ -34,6 +37,10 @@ app.post("/submit", function(req, res){
     }
 });
 
+
+/**
+ *
+ */
 app.get("/results", function(req, res) {
     var results = "";
     fs.readdirSync(__dirname + "/results").forEach(function(file) {
@@ -48,18 +55,48 @@ app.get("/results", function(req, res) {
     res.end(results);
 });
 
-app.listen(8080, function () {
-
-    console.log("Express app listening on 8080");
-
-});
 
 /**
  *
  */
-function checkPassword(results) {
+app.post("/load", function(req, res) {
+
+    var request = req.body;
+    request.password = sha256(request.password);
+
+    console.log(request.name + ' requested');
+
+    var file = __dirname + "/results/" + request.name + ".txt";
+    if (checkPassword(request, file)) {
+
+        selections = JSON.parse(fs.readFileSync(file, "utf-8"));
+
+        delete selections.name;
+        delete selections.password;
+
+        res.writeHead(200, {"Content-Type": "application/json"});
+        res.end(JSON.stringify(selections));
+
+    } else {
+        res.writeHead(401, {"Content-Type": "text/html"});
+        res.end("Incorrect password");
+    }
+});
+
+
+/**
+ *
+ */
+app.listen(8080, function () {
+    console.log("Express app listening on 8080");
+});
+
+
+/**
+ *
+ */
+function checkPassword(results, file) {
     var valid = false;
-    var file = __dirname + "/results/" + results.name + ".txt";
 
     if(fs.existsSync(file)) {
         console.log(results.name + ".txt already exists");
