@@ -42,17 +42,18 @@ app.post("/submit", function(req, res){
  *
  */
 app.get("/results", function(req, res) {
-    var results = "";
+    var allSelections = [];
     fs.readdirSync(__dirname + "/results").forEach(function(file) {
-        result = JSON.parse(fs.readFileSync(__dirname + "/results/" + file, "utf-8"));
-        delete result.password;
+        selection = JSON.parse(fs.readFileSync(__dirname + "/results/" + file, "utf-8"));
+        delete selection.password;
+        delete selection.create_date;
 
-        results += JSON.stringify(result) + "</br></br>";
+        allSelections.push(selection);
     });
 
-    console.log(results);
+    console.log(JSON.stringify(allSelections));
     res.writeHead(200, {"Content-Type": "text/html"});
-    res.end(results);
+    res.end(evaluateResults(allSelections));
 });
 
 
@@ -73,6 +74,7 @@ app.post("/load", function(req, res) {
 
         delete selections.name;
         delete selections.password;
+        delete selections.create_date;
 
         res.writeHead(200, {"Content-Type": "application/json"});
         res.end(JSON.stringify(selections));
@@ -112,4 +114,94 @@ function checkPassword(results, file) {
     }
 
     return valid;
+}
+
+/**
+ *
+ */
+function evaluateResults(allSelections) {
+    const NUM_CATEGORIES = 24;
+    var correctAnswers = new Array(allSelections.length);
+    correctAnswers.fill(0);
+
+    var htmlTable = "<table>"
+    for (var category in winners) {
+        htmlTable += "<tr> <td> " + categoryNames[category] + "</td>";
+        for (var i = 0; i < allSelections.length; ++i) {
+            var selection = allSelections[i];
+            if (selection[category] === winners[category]) {
+                correctAnswers[i] = 1 + correctAnswers[i];
+                htmlTable += "<td> <b>" + selection[category] + " </b> </td>";
+            } else {
+                htmlTable += "<td> " + selection[category] + " </td>";
+            }
+        }
+        htmlTable += "</tr>";
+    }
+    console.log(correctAnswers);
+    htmlTable += "<tr><td></td>";
+    for (var i = 0; i < correctAnswers.length; ++i) {
+        htmlTable += "<td>" + correctAnswers[i] + "/" + NUM_CATEGORIES + "</td>";
+    }
+    htmlTable += "</tr></table>";
+    return htmlTable;
+}
+
+/**
+ *
+ */
+var winners = {
+    picture:"",
+    lactor:"",
+    lactress:"",
+    sactor:"",
+    sactress:"",
+    director:"",
+    animated:"",
+    anshort:"",
+    ascreen:"",
+    oscreen:"",
+    cinem:"",
+    docfeat:"",
+    docshort:"",
+    lashort:"",
+    foreign:"",
+    fedit:"",
+    sedit:"",
+    mixing:"",
+    prod:"",
+    score:"",
+    song:"",
+    hair:"",
+    costume:"",
+    vfx:"",
+    name:""
+}
+
+var categoryNames = {
+    picture:"Best Picture",
+    lactor:"Best Lead Actor",
+    lactress:"Best Lead Actress",
+    sactor:"Best Supporting Actor",
+    sactress:"Best Supporting Actress",
+    director:"Best Directory",
+    animated:"Best Animated Feature",
+    anshort:"Best Animated Short",
+    ascreen:"Best Adapted Screenplay",
+    oscreen:"Best Original Screenplay",
+    cinem:"Best Cinematography",
+    docfeat:"Best Documentary Feature",
+    docshort:"Best Documentary Short",
+    lashort:"Best Live-Action Short",
+    foreign:"Best Foreign Feature",
+    fedit:"Best Editing",
+    sedit:"Best Sound Editing",
+    mixing:"Best Sound Mixing",
+    prod:"Best Production Design",
+    score:"Best Original Score",
+    song:"Best Original Song",
+    hair:"Best Hair and Makeup",
+    costume:"Best Costume Design",
+    vfx:"Best Visual Effects",
+    name:"Name"
 }
