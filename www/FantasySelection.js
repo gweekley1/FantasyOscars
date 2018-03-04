@@ -1,3 +1,4 @@
+//let HOST = "http://52.42.59.227";
 let HOST = "http://localhost:8080";
 
 function loadSelectionsFromBrowser() {
