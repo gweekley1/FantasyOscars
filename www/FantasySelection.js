@@ -1,8 +1,10 @@
-//let HOST = "http://52.42.59.227";
-let HOST = "http://localhost:8080";
+//const HOST = "http://52.42.59.227";
+const HOST = "http://localhost:8080";
+
+const STORAGE_KEY = "grantsOscarFantasySelections";
 
 function loadSelectionsFromBrowser() {
-    var selections = JSON.parse(localStorage.getItem("grantsOscarFantasySelections"));
+    var selections = JSON.parse(localStorage.getItem(STORAGE_KEY));
     setInputsFromJson(selections);
 }
 
@@ -22,10 +24,11 @@ function loadSelectionsFromServer() {
         timeout: 3000,
         success: function(data) {
             console.log(data);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
             setInputsFromJson(data);
         },
-        error: function(err, msg, code) {
-            alert("Load failed: " + code);
+        error: function(err) {
+            alert("Load failed: " + err.responseText);
         }
     });
 }
@@ -61,7 +64,7 @@ function submitSelections() {
     var name = document.getElementById("name");
     selectionsJson["name"] = name.value;
 
-    localStorage.setItem("grantsOscarFantasySelections", JSON.stringify(selectionsJson));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(selectionsJson));
 
     var password = document.getElementById("password");
     selectionsJson["password"] = password.value;
@@ -76,8 +79,8 @@ function submitSelections() {
         success: function() {
             alert("Selections successfully submitted");
         },
-        error: function(err, msg, code) {
-            alert("Submission failed: " + code);
+        error: function(err) {
+            alert("Submission failed: " + err.responseText);
         }
     });
 

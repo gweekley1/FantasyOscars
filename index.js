@@ -17,23 +17,31 @@ app.post("/submit", function(req, res){
     results.password = sha256(results.password);
     results["create_date"] = new Date();
 
-    var file = __dirname + "/results/" + results.name + ".txt";
-    if (checkPassword(results, file)) {
+    var cutoffTime = new Date('2018-03-04T22:00:00Z');
+    var currentTime = new Date();
 
-        fs.writeFile(file, JSON.stringify(results), function(err){
-          if (err) {
-            console.log("Failed to save " + results.name + ".txt");
-          } else {
-            console.log("Saved " + results.name + ".txt successfully");
-          }
-        });
+    if (currentTime.getTime() <= cutoffTime.getTime()) {
+        var file = __dirname + "/results/" + results.name + ".txt";
+        if (checkPassword(results, file)) {
 
-        res.writeHead(200, {"Content-Type": "text/html"});
-        res.end("Thank you, come again");
+            fs.writeFile(file, JSON.stringify(results), function(err){
+              if (err) {
+                console.log("Failed to save " + results.name + ".txt");
+              } else {
+                console.log("Saved " + results.name + ".txt successfully");
+              }
+            });
 
+            res.writeHead(200, {"Content-Type": "text/html"});
+            res.end("Thank you, come again");
+
+        } else {
+            res.writeHead(401, {"Content-Type": "text/html"});
+            res.end("Incorrect password");
+        }
     } else {
-        res.writeHead(401, {"Content-Type": "text/html"});
-        res.end("Incorrect password");
+        res.writeHead(410, {"Content-Type": "text/html"});
+        res.end("Missed cutoff time");
     }
 });
 
