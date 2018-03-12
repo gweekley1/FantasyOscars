@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(express.static("www"));
 
 /**
- *
+ * Submit user selections. Saves the results to __dirname/results/<name>.txt
  */
 app.post("/submit", function(req, res){
 
@@ -17,11 +17,14 @@ app.post("/submit", function(req, res){
     results.password = sha256(results.password);
     results["create_date"] = new Date();
 
-    var cutoffTime = new Date('2018-03-04T22:00:00Z');
+    var cutoffTime = new Date('2018-03-05T00:45:00Z');
     var currentTime = new Date();
 
-    if (currentTime.getTime() <= cutoffTime.getTime()) {
+    // Only accept the submission if the cutoff time hasn't been reached or this
+    // submission is an update to the winners
+    if (currentTime.getTime() <= cutoffTime.getTime() || results.name === "winners") {
         var file = __dirname + "/results/" + results.name + ".txt";
+        // Assert that user is new or has the correct password
         if (checkPassword(results, file)) {
 
             fs.writeFile(file, JSON.stringify(results), function(err){
@@ -47,10 +50,12 @@ app.post("/submit", function(req, res){
 
 
 /**
- *
+ * Evaluate every user selection and build an HTML table to return as a response
+ * See 'functon evaluateResults' for more information on the table and its generation
  */
 app.get("/results", function(req, res) {
     var allSelections = [];
+    // Build a JSONArray of every user selection
     fs.readdirSync(__dirname + "/results").forEach(function(file) {
         selection = JSON.parse(fs.readFileSync(__dirname + "/results/" + file, "utf-8"));
         delete selection.password;
@@ -66,7 +71,8 @@ app.get("/results", function(req, res) {
 
 
 /**
- *
+ * Validate that the request's username and passord are correct. and if so
+ * return their selections as JSON. Otherwise, return an error
  */
 app.post("/load", function(req, res) {
 
@@ -95,7 +101,7 @@ app.post("/load", function(req, res) {
 
 
 /**
- *
+ * Begin listening on port 8080. Nginx will map 80 to this port
  */
 app.listen(8080, function () {
     console.log("Express app listening on 8080");
@@ -103,7 +109,11 @@ app.listen(8080, function () {
 
 
 /**
+ * Check whether or not the submitted results are for a new user or have the correct password
  *
+ * results: JSON of the selections, includes a name and Password
+ * file: the path to the saved selection file, which may not exist
+ * return: true if this is a new or validated user, false otherwise
  */
 function checkPassword(results, file) {
     var valid = false;
@@ -125,14 +135,30 @@ function checkPassword(results, file) {
 }
 
 /**
+ * Procedurally generates an HTML table of every user's selections and the winners,
+ * indicating which selections were correct and what fraction they got right.
  *
+ * allSelections: JSON array of every user's selections
+ * returns: the HTML table as a String
  */
 function evaluateResults(allSelections) {
     const NUM_CATEGORIES = 24;
     var correctAnswers = new Array(allSelections.length);
     correctAnswers.fill(0);
 
-    var htmlTable = "<table><tr><td></td>"
+    // Load the winners, which are stored as a user submission
+    var file = __dirname + "/results/winners.txt";
+    var winners = JSON.parse(fs.readFileSync(file, "utf-8"));
+
+    delete winners.name;
+    delete winners.password;
+    delete winners.create_date;
+
+    // Begin building the HTML table
+    var htmlTable = "<!DOCTYPE html><html><head><style>table,th,td{border:1px solid black;border-collapse:collapse}</style></head>"
+    htmlTable += "<body><table><tr><td></td>";
+
+    // Add the name row
     for (var i = 0; i < allSelections.length; ++i) {
         var selection = allSelections[i];
 
@@ -141,12 +167,15 @@ function evaluateResults(allSelections) {
     }
     htmlTable += "</tr>";
 
+    // Walk through every category, building a row for each of them
     for (var category in winners) {
         htmlTable += "<tr> <td> " + categoryNames[category] + "</td>";
+        // Walk through every user's selection in this category
         for (var i = 0; i < allSelections.length; ++i) {
             var selection = allSelections[i];
             delete selection.name;
 
+            // If the user answered correctly, bold the table cell and increment their correctAnswer counter
             if (selection[category] === winners[category]) {
                 correctAnswers[i] = 1 + correctAnswers[i];
                 htmlTable += "<td> <b>" + nomineeNames[selection[category]] + " </b> </td>";
@@ -158,46 +187,22 @@ function evaluateResults(allSelections) {
         }
         htmlTable += "</tr>";
     }
+
     console.log(correctAnswers);
+    // Add the Number Correct row
     htmlTable += "<tr><td></td>";
     for (var i = 0; i < correctAnswers.length; ++i) {
         htmlTable += "<td>" + correctAnswers[i] + "/" + NUM_CATEGORIES + "</td>";
     }
-    htmlTable += "</tr></table>";
+    htmlTable += "</tr></table></body>";
     return htmlTable;
 }
 
-/**
- *
- */
-var winners = {
-    picture:"",
-    lactor:"",
-    lactress:"",
-    sactor:"",
-    sactress:"",
-    director:"",
-    animated:"",
-    anshort:"",
-    ascreen:"",
-    oscreen:"",
-    cinem:"",
-    docfeat:"",
-    docshort:"",
-    lashort:"",
-    foreign:"",
-    fedit:"",
-    sedit:"",
-    mixing:"",
-    prod:"",
-    score:"",
-    song:"",
-    hair:"",
-    costume:"",
-    vfx:""
-}
 
-var categoryNames = {
+/**
+ *  JSON mapping the parameter names to their full category names
+ */
+const categoryNames = {
     picture:"Best Picture",
     lactor:"Best Lead Actor",
     lactress:"Best Lead Actress",
@@ -225,7 +230,10 @@ var categoryNames = {
     name:"Name"
 }
 
-var nomineeNames = {
+/**
+ * JSON mapping the HTML selection values to the names of the Nominee
+ */
+const nomineeNames = {
     callme: "Call Me By Your Name",
     darkest: "Darkest Hour",
     dunkirk: "Dunkirk",
@@ -272,7 +280,7 @@ var nomineeNames = {
     rhymes: 'Revolting Rhymes',
     disaster: 'The Disaster Artist',
     logan: 'Logan',
-    molly: "Molly’s Game",
+    molly: "Molly's Game",
     mudbound: 'Mudbound',
     sick: 'The Big Sick',
     deakins: '"Blade Runner 2049," Roger Deakins',
