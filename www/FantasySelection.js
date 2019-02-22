@@ -1,7 +1,7 @@
-//const HOST = "http://52.42.59.227";
-const HOST = "http://localhost:8080";
+const HOST = "http://34.210.66.223";
+//const HOST = "http://localhost:8080";
 
-const STORAGE_KEY = "grantsOscarFantasySelections";
+const STORAGE_KEY = "grantsFantasyOscarsSelections";
 
 /**
  * Pull the saved selection JSON from localStorage and set the radio inputs accordingly
