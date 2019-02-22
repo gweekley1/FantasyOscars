@@ -1,0 +1,26 @@
+{
+  "name": "fantasyoscars",
+  "version": "2.0.0",
+  "description": "This Node.js Express server was built in half of a week to allow my friends and I to compare and score our Oscar Predictions.",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "fs": "^0.0.1-security",
+    "sha256": "^0.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gweekley1/FantasyOscars.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gweekley1/FantasyOscars/issues"
+  },
+  "homepage": "https://github.com/gweekley1/FantasyOscars#readme"
+}
