@@ -19,13 +19,13 @@
         <div class="wrapper">
             <div class="column">
 
-                <h1>91st Academy Awards Predictions</h1>
+                <h1>92nd Academy Awards Predictions</h1>
 
                 <form id="oscarSelections">
 
                     <div class="userinfo">
                         <label for="name">Name:</label>
-                        <input id="name" placeholder="Enter your name here"/> </br>
+                        <input id="name" maxlength="50" placeholder="Enter your name here"/> </br>
                         <label for="password">Password:</label>
                         <input id="password" type="password" size="25em" placeholder="Password protect your results"/>
                         <button type="button" onclick="loadSelectionsFromServer()">Load from server</button>
@@ -33,219 +33,222 @@
 
                     <div class="category">
                         <div> Best Picture </div>
-                        <input type="radio" name="picture" id="" value="picture0" >Black Panther</input></br>
-                        <input type="radio" name="picture" id="" value="picture1" >BlacKkKlansman</input></br>
-                        <input type="radio" name="picture" id="" value="picture2" >Bohemian Rhapsody</input></br>
-                        <input type="radio" name="picture" id="" value="picture3" >The Favourite</input></br>
-                        <input type="radio" name="picture" id="" value="picture4" >Green Book</input></br>
-                        <input type="radio" name="picture" id="" value="picture5" >Roma</input></br>
-                        <input type="radio" name="picture" id="" value="picture6" >A Star Is Born</input></br>
-                        <input type="radio" name="picture" id="" value="picture7" >Vice</input></br>
+                        <input type="radio" name="picture" id="" value="picture0" >Ford v Ferrari</input></br>
+                        <input type="radio" name="picture" id="" value="picture1" >The Irishman</input></br>
+                        <input type="radio" name="picture" id="" value="picture2" >Jojo Rabbit</input></br>
+                        <input type="radio" name="picture" id="" value="picture3" >Joker</input></br>
+                        <input type="radio" name="picture" id="" value="picture4" >Little Women</input></br>
+                        <input type="radio" name="picture" id="" value="picture5" >Marriage Story</input></br>
+                        <input type="radio" name="picture" id="" value="picture6" >Once Upon a Time in Hollywood</input></br>
+                        <input type="radio" name="picture" id="" value="picture7" >1917</input></br>
+                        <input type="radio" name="picture" id="" value="picture8" >Parasite</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Lead Actor </div>
-                        <input type="radio" name="lactor" id="" value="lactor0" >Christian Bale (Vice)</input></br>
-                        <input type="radio" name="lactor" id="" value="lactor1" >Bradley Cooper (A Star Is Born)</input></br>
-                        <input type="radio" name="lactor" id="" value="lactor2" >Willem Dafoe (At Eternity's Gate)</input></br>
-                        <input type="radio" name="lactor" id="" value="lactor3" >Rami Malek (Bohemian Rhapsody)</input></br>
-                        <input type="radio" name="lactor" id="" value="lactor4" >Viggo Mortensen (Green Book)</input></br>
+                        <input type="radio" name="lactor" id="" value="lactor0" >Antonio Banderas, Pain and Glory</input></br>
+                        <input type="radio" name="lactor" id="" value="lactor1" >Leonardo DiCaprio, Once Upon a Time in Hollywood</input></br>
+                        <input type="radio" name="lactor" id="" value="lactor2" >Adam Driver, Marriage Story</input></br>
+                        <input type="radio" name="lactor" id="" value="lactor3" >Joaquin Phoenix, Joker</input></br>
+                        <input type="radio" name="lactor" id="" value="lactor4" >Jonathan Pryce, The Two Popes</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Lead Actress </div>
-                        <input type="radio" name="lactress" id="" value="lactress0" >Yalitza Aparicio (Roma)</input></br>
-                        <input type="radio" name="lactress" id="" value="lactress1" >Glenn Close (The Wife)</input></br>
-                        <input type="radio" name="lactress" id="" value="lactress2" >Olivia Colman (The Favourite)</input></br>
-                        <input type="radio" name="lactress" id="" value="lactress3" >Lady Gaga (A Star Is Born)</input></br>
-                        <input type="radio" name="lactress" id="" value="lactress4" >Melissa McCarthy (Can You Ever Forgive Me?)</input></br>
+                        <input type="radio" name="lactress" id="" value="lactress0" >Cynthia Erivo, Harriet</input></br>
+                        <input type="radio" name="lactress" id="" value="lactress1" >Scarlett Johansson, Marriage Story</input></br>
+                        <input type="radio" name="lactress" id="" value="lactress2" >Saoirse Ronan, Little Women</input></br>
+                        <input type="radio" name="lactress" id="" value="lactress3" >Charlize Theron, Bombshell</input></br>
+                        <input type="radio" name="lactress" id="" value="lactress4" >Renée Zellweger, Judy</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Supporting Actor </div>
-                        <input type="radio" name="sactor" id="" value="sactor0" >Mahershala Ali (Green Book)</input></br>
-                        <input type="radio" name="sactor" id="" value="sactor1" >Adam Driver (BlacKkKlansman)</input></br>
-                        <input type="radio" name="sactor" id="" value="sactor2" >Sam Elliott (A Star Is Born)</input></br>
-                        <input type="radio" name="sactor" id="" value="sactor3" >Richard E. Grant (Can You Ever Forgive Me?)</input></br>
-                        <input type="radio" name="sactor" id="" value="sactor4" >Sam Rockwell (Vice)</input></br>
+                        <input type="radio" name="sactor" id="" value="sactor0" >Tom Hanks, A Beautiful Day in the Neighborhood</input></br>
+                        <input type="radio" name="sactor" id="" value="sactor1" >Anthony Hopkins, The Two Popes</input></br>
+                        <input type="radio" name="sactor" id="" value="sactor2" >Al Pacino, The Irishman</input></br>
+                        <input type="radio" name="sactor" id="" value="sactor3" >Joe Pesci, The Irishman</input></br>
+                        <input type="radio" name="sactor" id="" value="sactor4" >Brad Pitt, Once Upon a Time in Hollywood</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Supporting Actress </div>
-                        <input type="radio" name="sactress" id="" value="sactress0" >Amy Adams (Vice)</input></br>
-                        <input type="radio" name="sactress" id="" value="sactress1" >Marina de Tavira (Roma)</input></br>
-                        <input type="radio" name="sactress" id="" value="sactress2" >Regina King (If Beale Street Could Talk)</input></br>
-                        <input type="radio" name="sactress" id="" value="sactress3" >Emma Stone (The Favourite)</input></br>
-                        <input type="radio" name="sactress" id="" value="sactress4" >Rachel Weisz (The Favourite)</input></br>
+                        <input type="radio" name="sactress" id="" value="sactress0" >Kathy Bates, Richard Jewell</input></br>
+                        <input type="radio" name="sactress" id="" value="sactress1" >Laura Dern, Marriage Story</input></br>
+                        <input type="radio" name="sactress" id="" value="sactress2" >Scarlett Johansson, Jojo Rabbit</input></br>
+                        <input type="radio" name="sactress" id="" value="sactress3" >Florence Pugh, Little Women</input></br>
+                        <input type="radio" name="sactress" id="" value="sactress4" >Margot Robbie, Bombshell</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Director </div>
-                        <input type="radio" name="director" id="" value="director0" >Alfonso Cuaron (Roma)</input></br>
-                        <input type="radio" name="director" id="" value="director1" >Yorgos Lanthimos (The Favourite)</input></br>
-                        <input type="radio" name="director" id="" value="director2" >Spike Lee (BlacKkKlansman)</input></br>
-                        <input type="radio" name="director" id="" value="director3" >Adam McKay (Vice)</input></br>
-                        <input type="radio" name="director" id="" value="director4" >Pawel Pawlikowski (Cold War)</input></br>
+                        <input type="radio" name="director" id="" value="director0" >Martin Scorsese, The Irishman</input></br>
+                        <input type="radio" name="director" id="" value="director1" >Todd Phillips, Joker</input></br>
+                        <input type="radio" name="director" id="" value="director2" >Sam Mendes, 1917</input></br>
+                        <input type="radio" name="director" id="" value="director3" >Quentin Tarantino, Once Upon a Time in Hollywood</input></br>
+                        <input type="radio" name="director" id="" value="director4" >Bong Joon-ho, Parasite</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Animated Feature </div>
-                        <input type="radio" name="animated" id="" value="animated0" >Incredibles 2</input></br>
-                        <input type="radio" name="animated" id="" value="animated1" >Isle of Dogs</input></br>
-                        <input type="radio" name="animated" id="" value="animated2" >Mirai</input></br>
-                        <input type="radio" name="animated" id="" value="animated3" >Ralph Breaks the Internet</input></br>
-                        <input type="radio" name="animated" id="" value="animated4" >Spider-Man: Into the Spider-Verse</input></br>
+                        <input type="radio" name="animated" id="" value="animated0" >How to Train Your Dragon: The Hidden World</input></br>
+                        <input type="radio" name="animated" id="" value="animated1" >I Lost My Body</input></br>
+                        <input type="radio" name="animated" id="" value="animated2" >Klaus</input></br>
+                        <input type="radio" name="animated" id="" value="animated3" >Missing Link</input></br>
+                        <input type="radio" name="animated" id="" value="animated4" >Toy Story 4</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Animated Short </div>
-                        <input type="radio" name="anshort" id="" value="anshort0" >Animal Behaviour</input></br>
-                        <input type="radio" name="anshort" id="" value="anshort1" >Bao</input></br>
-                        <input type="radio" name="anshort" id="" value="anshort2" >Late Afternoon</input></br>
-                        <input type="radio" name="anshort" id="" value="anshort3" >One Small Step</input></br>
-                        <input type="radio" name="anshort" id="" value="anshort4" >Weekends</input></br>
+                        <input type="radio" name="anshort" id="" value="anshort0" >Dcera (Daughter)</input></br>
+                        <input type="radio" name="anshort" id="" value="anshort1" >Hair Love</input></br>
+                        <input type="radio" name="anshort" id="" value="anshort2" >Kitbull</input></br>
+                        <input type="radio" name="anshort" id="" value="anshort3" >Memorable</input></br>
+                        <input type="radio" name="anshort" id="" value="anshort4" >Sister</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Adapted Screenplay </div>
-                        <input type="radio" name="ascreen" id="" value="ascreen0" >A Star Is Born (Eric Roth, Will Fetters & Bradley Cooper)</input></br>
-                        <input type="radio" name="ascreen" id="" value="ascreen1" >The Ballad of Buster Scruggs (Joel Coen & Ethan Coen)</input></br>
-                        <input type="radio" name="ascreen" id="" value="ascreen2" >BlacKkKlansman (Charlie Wachtel & David Rabinowitz and Kevin Willmott & Spike Lee)</input></br>
-                        <input type="radio" name="ascreen" id="" value="ascreen3" >If Beale Street Could Talk (Barry Jenkins)</input></br>
-                        <input type="radio" name="ascreen" id="" value="ascreen4" >Can You Ever Forgive Me? (Nicole Holofcener and Jeff Whitty)</input></br>
+                        <input type="radio" name="ascreen" id="" value="ascreen0" >The Irishman</input></br>
+                        <input type="radio" name="ascreen" id="" value="ascreen1" >Jojo Rabbit</input></br>
+                        <input type="radio" name="ascreen" id="" value="ascreen2" >Joker</input></br>
+                        <input type="radio" name="ascreen" id="" value="ascreen3" >Little Women</input></br>
+                        <input type="radio" name="ascreen" id="" value="ascreen4" >The Two Popes</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Original Screenplay </div>
-                        <input type="radio" name="oscreen" id="" value="oscreen0" >The Favourite (Deborah Davis and Tony McNamara)</input></br>
-                        <input type="radio" name="oscreen" id="" value="oscreen1" >First Reformed (Paul Schrader)</input></br>
-                        <input type="radio" name="oscreen" id="" value="oscreen2" >Green Book (Nick Vallelonga & Brian Hayes Currie & Peter Farrelly)</input></br>
-                        <input type="radio" name="oscreen" id="" value="oscreen3" >Roma (Alfonso Cuaron)</input></br>
-                        <input type="radio" name="oscreen" id="" value="oscreen4" >Vice (Adam McKay)</input></br>
+                        <input type="radio" name="oscreen" id="" value="oscreen0" >Knives Out</input></br>
+                        <input type="radio" name="oscreen" id="" value="oscreen1" >Marriage Story</input></br>
+                        <input type="radio" name="oscreen" id="" value="oscreen2" >1917</input></br>
+                        <input type="radio" name="oscreen" id="" value="oscreen3" >Once Upon a Time in Hollywood</input></br>
+                        <input type="radio" name="oscreen" id="" value="oscreen4" >Parasite</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Cinematography </div>
-                        <input type="radio" name="cinem" id="" value="cinem0" >The Favourite (Robbie Ryan)</input></br>
-                        <input type="radio" name="cinem" id="" value="cinem1" >Never Look Away (Caleb Deschanel)</input></br>
-                        <input type="radio" name="cinem" id="" value="cinem2" >Roma (Alfonso Cuaron)</input></br>
-                        <input type="radio" name="cinem" id="" value="cinem3" >A Star Is Born (Matty Libatique)</input></br>
-                        <input type="radio" name="cinem" id="" value="cinem4" >Cold War (Lukasz Zal)</input></br>
+                        <input type="radio" name="cinem" id="" value="cinem0" >The Irishman</input></br>
+                        <input type="radio" name="cinem" id="" value="cinem1" >Joker</input></br>
+                        <input type="radio" name="cinem" id="" value="cinem2" >The Lighthouse</input></br>
+                        <input type="radio" name="cinem" id="" value="cinem3" >1917</input></br>
+                        <input type="radio" name="cinem" id="" value="cinem4" >Once Upon a Time in Hollywood)</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Documentary Feature </div>
-                        <input type="radio" name="docfeat" id="" value="docfeat0" >Free Solo (Elizabeth Chai Vasarhelyi, Jimmy Chin, Evan Hayes and Shannon Dill)</input></br>
-                        <input type="radio" name="docfeat" id="" value="docfeat1" >Hale County This Morning, This Evening (RaMell Ross, Joslyn Barnes and Su Kim)</input></br>
-                        <input type="radio" name="docfeat" id="" value="docfeat2" >Minding the Gap (Bing Liu and Diane Quon)</input></br>
-                        <input type="radio" name="docfeat" id="" value="docfeat3" >Of Fathers and Sons (Talal Derki, Ansgar Frerich, Eva Kemme and Tobias N. Siebert)</input></br>
-                        <input type="radio" name="docfeat" id="" value="docfeat4" >RBG (Betsy West and Julie Cohen)</input></br>
+                        <input type="radio" name="docfeat" id="" value="docfeat0" >American Factory</input></br>
+                        <input type="radio" name="docfeat" id="" value="docfeat1" >The Cave</input></br>
+                        <input type="radio" name="docfeat" id="" value="docfeat2" >The Edge of Democracy</input></br>
+                        <input type="radio" name="docfeat" id="" value="docfeat3" >For Sama</input></br>
+                        <input type="radio" name="docfeat" id="" value="docfeat4" >Honeyland</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Documentary Short Subject </div>
-                        <input type="radio" name="docshort" id="" value="docshort0" >Black Sheep (Ed Perkins and Jonathan Chinn)</input></br>
-                        <input type="radio" name="docshort" id="" value="docshort1" >End Game (Rob Epstein and Jeffrey Friedman)</input></br>
-                        <input type="radio" name="docshort" id="" value="docshort2" >Lifeboat (Skye Fitzgerald and Bryn Mooser)</input></br>
-                        <input type="radio" name="docshort" id="" value="docshort3" >A Night at the Garden (Marshall Curry)</input></br>
-                        <input type="radio" name="docshort" id="" value="docshort4" >Period. End of Sentence. (Rayka Zehtabchi and Melissa Berton)</input></br>
+                        <input type="radio" name="docshort" id="" value="docshort0" >In the Absence</input></br>
+                        <input type="radio" name="docshort" id="" value="docshort1" >Learning to Skateboard in a Warzone (if You're a Girl)</input></br>
+                        <input type="radio" name="docshort" id="" value="docshort2" >Life Overtakes Me</input></br>
+                        <input type="radio" name="docshort" id="" value="docshort3" >St. Louis Superman</input></br>
+                        <input type="radio" name="docshort" id="" value="docshort4" >Walk Run Cha-Cha</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Live Action Short Film </div>
-                        <input type="radio" name="lashort" id="" value="lashort0" >Detainment (Vincent Lambe and Darren Maho)</input></br>
-                        <input type="radio" name="lashort" id="" value="lashort1" >Fauve (Jeremy Comte and Maria Gracia Turgeon)</input></br>
-                        <input type="radio" name="lashort" id="" value="lashort2" >Marguerite (Marianne Farley and Marie-Helene Panisset)</input></br>
-                        <input type="radio" name="lashort" id="" value="lashort3" >Mother (Rodrigo Sorogoyen and María del Puy Alvarado)</input></br>
-                        <input type="radio" name="lashort" id="" value="lashort4" >Skin (Guy Nattiv and Jaime Ray Newman)</input></br>
+                        <input type="radio" name="lashort" id="" value="lashort0" >Brotherhood</input></br>
+                        <input type="radio" name="lashort" id="" value="lashort1" >Nefta Football Club</input></br>
+                        <input type="radio" name="lashort" id="" value="lashort2" >The Neighbors' Window</input></br>
+                        <input type="radio" name="lashort" id="" value="lashort3" >Saria</input></br>
+                        <input type="radio" name="lashort" id="" value="lashort4" >A Sister</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Foreign Language Film </div>
-                        <input type="radio" name="foreign" id="" value="foreign0" >Capernaum (Lebanon)</input></br>
-                        <input type="radio" name="foreign" id="" value="foreign1" >Cold War (Poland)</input></br>
-                        <input type="radio" name="foreign" id="" value="foreign2" >Never Look Away (Germany)</input></br>
-                        <input type="radio" name="foreign" id="" value="foreign3" >Roma (Mexico)</input></br>
-                        <input type="radio" name="foreign" id="" value="foreign4" >Shoplifters (Japan)</input></br>
+                        <input type="radio" name="foreign" id="" value="foreign0" >Corpus Christi (Poland)</input></br>
+                        <input type="radio" name="foreign" id="" value="foreign1" >Honeyland (North Macedonia)</input></br>
+                        <input type="radio" name="foreign" id="" value="foreign2" >Les Misérables (France)</input></br>
+                        <input type="radio" name="foreign" id="" value="foreign3" >Pain and Glory (Spain)</input></br>
+                        <input type="radio" name="foreign" id="" value="foreign4" >Parasite (South Korea)</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Film Editing </div>
-                        <input type="radio" name="fedit" id="" value="fedit0" >BlacKkKlansman (Barry Alexander Brown)</input></br>
-                        <input type="radio" name="fedit" id="" value="fedit1" >Bohemian Rhapsody (John Ottman)</input></br>
-                        <input type="radio" name="fedit" id="" value="fedit2" >The Favourite (Yorgos Mavropsaridis)</input></br>
-                        <input type="radio" name="fedit" id="" value="fedit3" >Green Book (Patrick J. Don Vito)</input></br>
-                        <input type="radio" name="fedit" id="" value="fedit4" >Vice (Hank Corwin)</input></br>
+                        <input type="radio" name="fedit" id="" value="fedit0" >Ford v Ferrari</input></br>
+                        <input type="radio" name="fedit" id="" value="fedit1" >The Irishman</input></br>
+                        <input type="radio" name="fedit" id="" value="fedit2" >Jojo Rabbit</input></br>
+                        <input type="radio" name="fedit" id="" value="fedit3" >Joker</input></br>
+                        <input type="radio" name="fedit" id="" value="fedit4" >Parasite</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Sound Editing </div>
-                        <input type="radio" name="sedit" id="" value="sedit0" >Black Panther (Benjamin A. Burtt and Steve Boeddeker)</input></br>
-                        <input type="radio" name="sedit" id="" value="sedit1" >Bohemian Rhapsody (John Warhurst and Nina Hartstone)</input></br>
-                        <input type="radio" name="sedit" id="" value="sedit2" >First Man (Ai-Ling Lee and Mildred Iatrou Morgan)</input></br>
-                        <input type="radio" name="sedit" id="" value="sedit3" >A Quiet Place (Ethan Van der Ryn and Erik Aadahl)</input></br>
-                        <input type="radio" name="sedit" id="" value="sedit4" >Roma (Sergio Diaz and Skip Lievsay)</input></br>
+                        <input type="radio" name="sedit" id="" value="sedit0" >Ford v Ferrari</input></br>
+                        <input type="radio" name="sedit" id="" value="sedit1" >Joker</input></br>
+                        <input type="radio" name="sedit" id="" value="sedit2" >1917</input></br>
+                        <input type="radio" name="sedit" id="" value="sedit3" >Once Upon a Time in Hollywood</input></br>
+                        <input type="radio" name="sedit" id="" value="sedit4" >Star Wars: The Rise of Skywalker</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Sound Mixing </div>
-                        <input type="radio" name="mixing" id="" value="mixing0" >Black Panther (Steve Boeddeker, Brandon Proctor and Peter Devlin)</input></br>
-                        <input type="radio" name="mixing" id="" value="mixing1" >Bohemian Rhapsody (Paul Massey, Tim Cavagin and John Casali)</input></br>
-                        <input type="radio" name="mixing" id="" value="mixing2" >First Man (Jon Taylor, Frank A. Montaño, Ai-Ling Lee and Mary H. Ellis)</input></br>
-                        <input type="radio" name="mixing" id="" value="mixing3" >Roma (Skip Lievsay, Craig Henighan and Jose Antonio Garcia)</input></br>
-                        <input type="radio" name="mixing" id="" value="mixing4" >A Star Is Born (Tom Ozanich, Dean Zupancic, Jason Ruder and Steve Morrow)</input></br>
+                        <input type="radio" name="mixing" id="" value="mixing0" >Ad Astra</input></br>
+                        <input type="radio" name="mixing" id="" value="mixing1" >Ford v Ferrari</input></br>
+                        <input type="radio" name="mixing" id="" value="mixing2" >Joker</input></br>
+                        <input type="radio" name="mixing" id="" value="mixing3" >1917</input></br>
+                        <input type="radio" name="mixing" id="" value="mixing4" >Once Upon a Time in Hollywood</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Production Design </div>
-                        <input type="radio" name="prod" id="" value="prod0" >Black Panther (Hannah Beachler and Jay Hart)</input></br>
-                        <input type="radio" name="prod" id="" value="prod1" >The Favourite (Fiona Crombie and Alice Felton)</input></br>
-                        <input type="radio" name="prod" id="" value="prod2" >First Man (Nathan Crowley and Kathy Lucas)</input></br>
-                        <input type="radio" name="prod" id="" value="prod3" >Mary Poppins Returns (John Myhre and Gordon Sim)</input></br>
-                        <input type="radio" name="prod" id="" value="prod4" >Roma (Eugenio Caballero and Barbara Enriquez)</input></br>
+                        <input type="radio" name="prod" id="" value="prod0" >The Irishman</input></br>
+                        <input type="radio" name="prod" id="" value="prod1" >Jojo Rabbit</input></br>
+                        <input type="radio" name="prod" id="" value="prod2" >1917</input></br>
+                        <input type="radio" name="prod" id="" value="prod3" >Once Upon a Time in Hollywood</input></br>
+                        <input type="radio" name="prod" id="" value="prod4" >Parasite</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Original Score </div>
-                        <input type="radio" name="score" id="" value="score0" >Black Panther (Ludwig Goransson)</input></br>
-                        <input type="radio" name="score" id="" value="score1" >BlacKkKlansman (Terence Blanchard)</input></br>
-                        <input type="radio" name="score" id="" value="score2" >If Beale Street Could Talk (Nicholas Britell)</input></br>
-                        <input type="radio" name="score" id="" value="score3" >Isle of Dogs (Alexandre Desplat)</input></br>
-                        <input type="radio" name="score" id="" value="score4" >Mary Poppins Returns (Marc Shaiman)</input></br>
+                        <input type="radio" name="score" id="" value="score0" >Joker</input></br>
+                        <input type="radio" name="score" id="" value="score1" >Little Women</input></br>
+                        <input type="radio" name="score" id="" value="score2" >Marriage Story</input></br>
+                        <input type="radio" name="score" id="" value="score3" >1917</input></br>
+                        <input type="radio" name="score" id="" value="score4" >Star Wars: The Rise of Skywalker</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Original Song </div>
-                        <input type="radio" name="song" id="" value="song0" >"All the Stars" (Black Panther)</input></br>
-                        <input type="radio" name="song" id="" value="song1" >"I'll Fight" (RBG)</input></br>
-                        <input type="radio" name="song" id="" value="song2" >"The Place Where Lost Things Go" (Mary Poppins Returns)</input></br>
-                        <input type="radio" name="song" id="" value="song3" >"Shallow" (A Star Is Born)</input></br>
-                        <input type="radio" name="song" id="" value="song4" >"When a Cowboy Trades His Spurs for Wings" (The Ballad of Buster Scruggs)</input></br>
+                        <input type="radio" name="song" id="" value="song0" >"I Can't Let You Throw Yourself Away," Toy Story 4</input></br>
+                        <input type="radio" name="song" id="" value="song1" >"(I'm Gonna) Love Me Again," Rocketman</input></br>
+                        <input type="radio" name="song" id="" value="song2" >"I'm Standing With You," Breakthrough</input></br>
+                        <input type="radio" name="song" id="" value="song3" >"Into the Unknown," Frozen 2</input></br>
+                        <input type="radio" name="song" id="" value="song4" >"Stand Up," Harriet</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Makeup and Hair </div>
-                        <input type="radio" name="hair" id="" value="hair0" >Border (Goran Lundstrom and Pamela Goldammer)</input></br>
-                        <input type="radio" name="hair" id="" value="hair1" >Mary Queen of Scots (Jenny Shircore, Marc Pilcher and Jessica Brooks)</input></br>
-                        <input type="radio" name="hair" id="" value="hair2" >Vice (Greg Cannom, Kate Biscoe and Patricia DeHaney)</input></br>
+                        <input type="radio" name="hair" id="" value="hair0" >Bombshell</input></br>
+                        <input type="radio" name="hair" id="" value="hair1" >Joker)</input></br>
+                        <input type="radio" name="hair" id="" value="hair2" >Judy</input></br>
+                        <input type="radio" name="hair" id="" value="hair3" >Maleficent: Mistress of Evil</input></br>
+                        <input type="radio" name="hair" id="" value="hair4" >1917</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Costume Design </div>
-                        <input type="radio" name="costume" id="" value="costume0" >The Ballad of Buster Scruggs (Mary Zophres)</input></br>
-                        <input type="radio" name="costume" id="" value="costume1" >Black Panther (Ruth E. Carter)</input></br>
-                        <input type="radio" name="costume" id="" value="costume2" >The Favourite (Sandy Powell)</input></br>
-                        <input type="radio" name="costume" id="" value="costume3" >Mary Poppins Returns (Sandy Powell)</input></br>
-                        <input type="radio" name="costume" id="" value="costume4" >Mary Queen of Scots (Alexandra Byrne)</input></br>
+                        <input type="radio" name="costume" id="" value="costume0" >Jojo Rabbit</input></br>
+                        <input type="radio" name="costume" id="" value="costume1" >Once Upon a Time in Hollywood</input></br>
+                        <input type="radio" name="costume" id="" value="costume2" >The Irishman</input></br>
+                        <input type="radio" name="costume" id="" value="costume3" >Joker</input></br>
+                        <input type="radio" name="costume" id="" value="costume4" >Little Women</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Visual Effects </div>
-                        <input type="radio" name="vfx" id="" value="vfx0" >Avengers: Infinity War (Dan DeLeeuw, Kelly Port, Russell Earl and Dan Sudick)</input></br>
-                        <input type="radio" name="vfx" id="" value="vfx1" >Christopher Robin (Christopher Lawrence, Michael Eames, Theo Jones and Chris Corbould)</input></br>
-                        <input type="radio" name="vfx" id="" value="vfx2" >First Man (Paul Lambert, Ian Hunter, Tristan Myles and J.D. Schwalm)</input></br>
-                        <input type="radio" name="vfx" id="" value="vfx3" >Ready Player One (Roger Guyett, Grady Cofer, Matthew E. Butler and David Shirk)</input></br>
-                        <input type="radio" name="vfx" id="" value="vfx4" >Solo: A Star Wars Story (Rob Bredow, Patrick Tubach, Neal Scanlan and Dominic Tuohy)</input></br>
+                        <input type="radio" name="vfx" id="" value="vfx0" >Avengers: Endgame</input></br>
+                        <input type="radio" name="vfx" id="" value="vfx1" >The Irishman</input></br>
+                        <input type="radio" name="vfx" id="" value="vfx2" >The Lion King</input></br>
+                        <input type="radio" name="vfx" id="" value="vfx3" >1917</input></br>
+                        <input type="radio" name="vfx" id="" value="vfx4" >Star Wars: The Rise of Skywalker</input></br>
                     </div>
 
                     <button id="submit" type=button onclick="submitSelections()">Submit</button>

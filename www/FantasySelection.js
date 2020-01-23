@@ -86,7 +86,7 @@ function submitSelections() {
     var password = document.getElementById("password");
     selectionsJson["password"] = password.value;
 
-    console.log(selectionsJson)
+    console.log(selectionsJson);
 
     $.ajax({
         type: "POST",
