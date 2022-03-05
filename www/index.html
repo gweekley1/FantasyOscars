@@ -2,7 +2,7 @@
 
     <meta charset="utf-8">
 
-    <head>
+    <head title="Fantasy Oscars Selection">
 
         <link rel = "stylesheet" type = "text/css" href = "FantasySelection.css" />
 
@@ -19,7 +19,7 @@
         <div class="wrapper">
             <div class="column">
 
-                <h1>92nd Academy Awards Predictions</h1>
+                <h1>93rd Academy Awards Predictions</h1>
 
                 <form id="oscarSelections">
 
@@ -28,166 +28,225 @@
                         <input id="name" maxlength="50" placeholder="Enter your name here"/> </br>
                         <label for="password">Password:</label>
                         <input id="password" type="password" size="25em" placeholder="Password protect your results"/>
-                        <button type="button" onclick="loadSelectionsFromServer()">Load from server</button>
+                        <button type="button" onclick="loadSelectionsFromServer()">Load saved selections</button>
+                        <p>*Entering your name and password and clicking 'Load saved selections' will fill out this page with your
+                            saved selections
+                        </p>
+                        <br>
+                        <button type=button onclick="location.href = HOST + '/results'">View Results</button >
                     </div>
 
                     <div class="category">
                         <div> Best Picture </div>
-                        <input type="radio" name="picture" id="" value="picture0" >Ford v Ferrari</input></br>
-                        <input type="radio" name="picture" id="" value="picture1" >The Irishman</input></br>
-                        <input type="radio" name="picture" id="" value="picture2" >Jojo Rabbit</input></br>
-                        <input type="radio" name="picture" id="" value="picture3" >Joker</input></br>
-                        <input type="radio" name="picture" id="" value="picture4" >Little Women</input></br>
-                        <input type="radio" name="picture" id="" value="picture5" >Marriage Story</input></br>
-                        <input type="radio" name="picture" id="" value="picture6" >Once Upon a Time in Hollywood</input></br>
-                        <input type="radio" name="picture" id="" value="picture7" >1917</input></br>
-                        <input type="radio" name="picture" id="" value="picture8" >Parasite</input></br>
-                    </div>
-
-                    <div class="category">
-                        <div> Best Lead Actor </div>
-                        <input type="radio" name="lactor" id="" value="lactor0" >Antonio Banderas, Pain and Glory</input></br>
-                        <input type="radio" name="lactor" id="" value="lactor1" >Leonardo DiCaprio, Once Upon a Time in Hollywood</input></br>
-                        <input type="radio" name="lactor" id="" value="lactor2" >Adam Driver, Marriage Story</input></br>
-                        <input type="radio" name="lactor" id="" value="lactor3" >Joaquin Phoenix, Joker</input></br>
-                        <input type="radio" name="lactor" id="" value="lactor4" >Jonathan Pryce, The Two Popes</input></br>
-                    </div>
-
-                    <div class="category">
-                        <div> Best Lead Actress </div>
-                        <input type="radio" name="lactress" id="" value="lactress0" >Cynthia Erivo, Harriet</input></br>
-                        <input type="radio" name="lactress" id="" value="lactress1" >Scarlett Johansson, Marriage Story</input></br>
-                        <input type="radio" name="lactress" id="" value="lactress2" >Saoirse Ronan, Little Women</input></br>
-                        <input type="radio" name="lactress" id="" value="lactress3" >Charlize Theron, Bombshell</input></br>
-                        <input type="radio" name="lactress" id="" value="lactress4" >Renée Zellweger, Judy</input></br>
-                    </div>
-
-                    <div class="category">
-                        <div> Best Supporting Actor </div>
-                        <input type="radio" name="sactor" id="" value="sactor0" >Tom Hanks, A Beautiful Day in the Neighborhood</input></br>
-                        <input type="radio" name="sactor" id="" value="sactor1" >Anthony Hopkins, The Two Popes</input></br>
-                        <input type="radio" name="sactor" id="" value="sactor2" >Al Pacino, The Irishman</input></br>
-                        <input type="radio" name="sactor" id="" value="sactor3" >Joe Pesci, The Irishman</input></br>
-                        <input type="radio" name="sactor" id="" value="sactor4" >Brad Pitt, Once Upon a Time in Hollywood</input></br>
-                    </div>
-
-                    <div class="category">
-                        <div> Best Supporting Actress </div>
-                        <input type="radio" name="sactress" id="" value="sactress0" >Kathy Bates, Richard Jewell</input></br>
-                        <input type="radio" name="sactress" id="" value="sactress1" >Laura Dern, Marriage Story</input></br>
-                        <input type="radio" name="sactress" id="" value="sactress2" >Scarlett Johansson, Jojo Rabbit</input></br>
-                        <input type="radio" name="sactress" id="" value="sactress3" >Florence Pugh, Little Women</input></br>
-                        <input type="radio" name="sactress" id="" value="sactress4" >Margot Robbie, Bombshell</input></br>
+                        <input type="radio" name="picture" id="" value="picture0" >The Father</input></br>
+                        <input type="radio" name="picture" id="" value="picture1" >Judas and the Black Messiah</input></br>
+                        <input type="radio" name="picture" id="" value="picture2" >Mank</input></br>
+                        <input type="radio" name="picture" id="" value="picture3" >Minari</input></br>
+                        <input type="radio" name="picture" id="" value="picture4" >Nomadland</input></br>
+                        <input type="radio" name="picture" id="" value="picture5" >Promising Young Woman</input></br>
+                        <input type="radio" name="picture" id="" value="picture6" >Sound of Metal</input></br>
+                        <input type="radio" name="picture" id="" value="picture7" >The Trial of the Chicago 7</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Director </div>
-                        <input type="radio" name="director" id="" value="director0" >Martin Scorsese, The Irishman</input></br>
-                        <input type="radio" name="director" id="" value="director1" >Todd Phillips, Joker</input></br>
-                        <input type="radio" name="director" id="" value="director2" >Sam Mendes, 1917</input></br>
-                        <input type="radio" name="director" id="" value="director3" >Quentin Tarantino, Once Upon a Time in Hollywood</input></br>
-                        <input type="radio" name="director" id="" value="director4" >Bong Joon-ho, Parasite</input></br>
+                        <input type="radio" name="director" id="" value="director0" >Thomas Vinterberg, Another Round</input></br>
+                        <input type="radio" name="director" id="" value="director1" >Emerald Fennell, Promising Young Woman</input></br>
+                        <input type="radio" name="director" id="" value="director2" >David Fincher, Mank</input></br>
+                        <input type="radio" name="director" id="" value="director3" >Lee Isaac Chung, Minari</input></br>
+                        <input type="radio" name="director" id="" value="director4" >Chloé Zhao, Nomadland</input></br>
                     </div>
 
                     <div class="category">
-                        <div> Best Animated Feature </div>
-                        <input type="radio" name="animated" id="" value="animated0" >How to Train Your Dragon: The Hidden World</input></br>
-                        <input type="radio" name="animated" id="" value="animated1" >I Lost My Body</input></br>
-                        <input type="radio" name="animated" id="" value="animated2" >Klaus</input></br>
-                        <input type="radio" name="animated" id="" value="animated3" >Missing Link</input></br>
-                        <input type="radio" name="animated" id="" value="animated4" >Toy Story 4</input></br>
+                        <div> Best Lead Actor </div>
+                        <input type="radio" name="lactor" id="" value="lactor0" >Riz Ahmed, Sound of Metal</input></br>
+                        <input type="radio" name="lactor" id="" value="lactor1" >Chadwick Boseman, Ma Rainey's Black Bottom</input></br>
+                        <input type="radio" name="lactor" id="" value="lactor2" >Anthony Hopkins, The Father</input></br>
+                        <input type="radio" name="lactor" id="" value="lactor3" >Gary Oldman, Mank</input></br>
+                        <input type="radio" name="lactor" id="" value="lactor4" >Steven Yeun, Minari</input></br>
                     </div>
 
                     <div class="category">
-                        <div> Best Animated Short </div>
-                        <input type="radio" name="anshort" id="" value="anshort0" >Dcera (Daughter)</input></br>
-                        <input type="radio" name="anshort" id="" value="anshort1" >Hair Love</input></br>
-                        <input type="radio" name="anshort" id="" value="anshort2" >Kitbull</input></br>
-                        <input type="radio" name="anshort" id="" value="anshort3" >Memorable</input></br>
-                        <input type="radio" name="anshort" id="" value="anshort4" >Sister</input></br>
+                        <div> Best Lead Actress </div>
+                        <input type="radio" name="lactress" id="" value="lactress0" >Viola Davis, Ma Rainey's Black Bottom</input></br>
+                        <input type="radio" name="lactress" id="" value="lactress1" >Andra Day, The United States vs Billie Holiday</input></br>
+                        <input type="radio" name="lactress" id="" value="lactress2" >Vanessa Kirby, Pieces of a Woman</input></br>
+                        <input type="radio" name="lactress" id="" value="lactress3" >Frances McDormand, Nomadland</input></br>
+                        <input type="radio" name="lactress" id="" value="lactress4" >Carey Mulligan, Promising Young Woman</input></br>
                     </div>
 
                     <div class="category">
-                        <div> Best Adapted Screenplay </div>
-                        <input type="radio" name="ascreen" id="" value="ascreen0" >The Irishman</input></br>
-                        <input type="radio" name="ascreen" id="" value="ascreen1" >Jojo Rabbit</input></br>
-                        <input type="radio" name="ascreen" id="" value="ascreen2" >Joker</input></br>
-                        <input type="radio" name="ascreen" id="" value="ascreen3" >Little Women</input></br>
-                        <input type="radio" name="ascreen" id="" value="ascreen4" >The Two Popes</input></br>
+                        <div> Best Supporting Actor </div>
+                        <input type="radio" name="sactor" id="" value="sactor0" >Sacha Baron Cohen, The Trial of the Chicago 7</input></br>
+                        <input type="radio" name="sactor" id="" value="sactor1" >Daniel Kaluuya, Judas and the Black Messiah</input></br>
+                        <input type="radio" name="sactor" id="" value="sactor2" >Leslie Odom, Jr, One Night in Miami</input></br>
+                        <input type="radio" name="sactor" id="" value="sactor3" >Paul Raci, Sound of Metal</input></br>
+                        <input type="radio" name="sactor" id="" value="sactor4" >Lakeith Stanfield, Judas and the Black Messiah</input></br>
+                    </div>
+
+                    <div class="category">
+                        <div> Best Supporting Actress </div>
+                        <input type="radio" name="sactress" id="" value="sactress0" >Maria Bakalova, Borat Subsequent Moviefilm</input></br>
+                        <input type="radio" name="sactress" id="" value="sactress1" >Glenn Close, Hillbilly Elegy</input></br>
+                        <input type="radio" name="sactress" id="" value="sactress2" >Olivia Colman, The Father</input></br>
+                        <input type="radio" name="sactress" id="" value="sactress3" >Amanda Seyfried, Mank</input></br>
+                        <input type="radio" name="sactress" id="" value="sactress4" >Youn Yuh-Jung, Minari</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Original Screenplay </div>
-                        <input type="radio" name="oscreen" id="" value="oscreen0" >Knives Out</input></br>
-                        <input type="radio" name="oscreen" id="" value="oscreen1" >Marriage Story</input></br>
-                        <input type="radio" name="oscreen" id="" value="oscreen2" >1917</input></br>
-                        <input type="radio" name="oscreen" id="" value="oscreen3" >Once Upon a Time in Hollywood</input></br>
-                        <input type="radio" name="oscreen" id="" value="oscreen4" >Parasite</input></br>
+                        <input type="radio" name="oscreen" id="" value="oscreen0" >Judas and the Black Messiah</input></br>
+                        <input type="radio" name="oscreen" id="" value="oscreen1" >Minari</input></br>
+                        <input type="radio" name="oscreen" id="" value="oscreen2" >Promising Young Woman</input></br>
+                        <input type="radio" name="oscreen" id="" value="oscreen3" >Sound of Metal</input></br>
+                        <input type="radio" name="oscreen" id="" value="oscreen4" >The Trial of the Chicago 7</input></br>
                     </div>
 
                     <div class="category">
-                        <div> Best Cinematography </div>
-                        <input type="radio" name="cinem" id="" value="cinem0" >The Irishman</input></br>
-                        <input type="radio" name="cinem" id="" value="cinem1" >Joker</input></br>
-                        <input type="radio" name="cinem" id="" value="cinem2" >The Lighthouse</input></br>
-                        <input type="radio" name="cinem" id="" value="cinem3" >1917</input></br>
-                        <input type="radio" name="cinem" id="" value="cinem4" >Once Upon a Time in Hollywood)</input></br>
+                        <div> Best Adapted Screenplay </div>
+                        <input type="radio" name="ascreen" id="" value="ascreen0" >Borat Subsequent Moviefilm</input></br>
+                        <input type="radio" name="ascreen" id="" value="ascreen1" >The Father</input></br>
+                        <input type="radio" name="ascreen" id="" value="ascreen2" >Nomadland</input></br>
+                        <input type="radio" name="ascreen" id="" value="ascreen3" >One Night in Miami</input></br>
+                        <input type="radio" name="ascreen" id="" value="ascreen4" >The White Tiger</input></br>
+                    </div>
+
+                    <div class="category">
+                        <div> Best Animated Feature </div>
+                        <input type="radio" name="animated" id="" value="animated0" >Onward</input></br>
+                        <input type="radio" name="animated" id="" value="animated1" >Over the Moon</input></br>
+                        <input type="radio" name="animated" id="" value="animated2" >A Shaun the Sheep Movie: Farmageddon</input></br>
+                        <input type="radio" name="animated" id="" value="animated3" >Soul</input></br>
+                        <input type="radio" name="animated" id="" value="animated4" >Wolfwalkers</input></br>
+                    </div>
+
+                    <div class="category">
+                        <div> Best International Feature Film </div>
+                        <input type="radio" name="foreign" id="" value="foreign0" >Another Round (Denmark)</input></br>
+                        <input type="radio" name="foreign" id="" value="foreign1" >Better Days (Hong Kong)</input></br>
+                        <input type="radio" name="foreign" id="" value="foreign2" >Collective (Romania)</input></br>
+                        <input type="radio" name="foreign" id="" value="foreign3" >The Man Who Sold His Skin (Tunisia)</input></br>
+                        <input type="radio" name="foreign" id="" value="foreign4" >Quo Vadis, Aida? (Bosnia and Herzegovina)</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Documentary Feature </div>
-                        <input type="radio" name="docfeat" id="" value="docfeat0" >American Factory</input></br>
-                        <input type="radio" name="docfeat" id="" value="docfeat1" >The Cave</input></br>
-                        <input type="radio" name="docfeat" id="" value="docfeat2" >The Edge of Democracy</input></br>
-                        <input type="radio" name="docfeat" id="" value="docfeat3" >For Sama</input></br>
-                        <input type="radio" name="docfeat" id="" value="docfeat4" >Honeyland</input></br>
+                        <input type="radio" name="docfeat" id="" value="docfeat0" >Collective</input></br>
+                        <input type="radio" name="docfeat" id="" value="docfeat1" >Crip Camp</input></br>
+                        <input type="radio" name="docfeat" id="" value="docfeat2" >The Mole Agent</input></br>
+                        <input type="radio" name="docfeat" id="" value="docfeat3" >My Octopus Teacher</input></br>
+                        <input type="radio" name="docfeat" id="" value="docfeat4" >Time</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Documentary Short Subject </div>
-                        <input type="radio" name="docshort" id="" value="docshort0" >In the Absence</input></br>
-                        <input type="radio" name="docshort" id="" value="docshort1" >Learning to Skateboard in a Warzone (if You're a Girl)</input></br>
-                        <input type="radio" name="docshort" id="" value="docshort2" >Life Overtakes Me</input></br>
-                        <input type="radio" name="docshort" id="" value="docshort3" >St. Louis Superman</input></br>
-                        <input type="radio" name="docshort" id="" value="docshort4" >Walk Run Cha-Cha</input></br>
+                        <input type="radio" name="docshort" id="" value="docshort0" >Colette</input></br>
+                        <input type="radio" name="docshort" id="" value="docshort1" >A Concerto Is a Conversation</input></br>
+                        <input type="radio" name="docshort" id="" value="docshort2" >Do Not Split</input></br>
+                        <input type="radio" name="docshort" id="" value="docshort3" >Hunger Ward</input></br>
+                        <input type="radio" name="docshort" id="" value="docshort4" >A Love Song for Latasha</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Live Action Short Film </div>
-                        <input type="radio" name="lashort" id="" value="lashort0" >Brotherhood</input></br>
-                        <input type="radio" name="lashort" id="" value="lashort1" >Nefta Football Club</input></br>
-                        <input type="radio" name="lashort" id="" value="lashort2" >The Neighbors' Window</input></br>
-                        <input type="radio" name="lashort" id="" value="lashort3" >Saria</input></br>
-                        <input type="radio" name="lashort" id="" value="lashort4" >A Sister</input></br>
+                        <input type="radio" name="lashort" id="" value="lashort0" >Feeling Through</input></br>
+                        <input type="radio" name="lashort" id="" value="lashort1" >The Letter Room</input></br>
+                        <input type="radio" name="lashort" id="" value="lashort2" >The Present</input></br>
+                        <input type="radio" name="lashort" id="" value="lashort3" >Two Distant Strangers</input></br>
+                        <input type="radio" name="lashort" id="" value="lashort4" >White Eye</input></br>
                     </div>
 
                     <div class="category">
-                        <div> Best Foreign Language Film </div>
-                        <input type="radio" name="foreign" id="" value="foreign0" >Corpus Christi (Poland)</input></br>
-                        <input type="radio" name="foreign" id="" value="foreign1" >Honeyland (North Macedonia)</input></br>
-                        <input type="radio" name="foreign" id="" value="foreign2" >Les Misérables (France)</input></br>
-                        <input type="radio" name="foreign" id="" value="foreign3" >Pain and Glory (Spain)</input></br>
-                        <input type="radio" name="foreign" id="" value="foreign4" >Parasite (South Korea)</input></br>
+                        <div> Best Animated Short </div>
+                        <input type="radio" name="anshort" id="" value="anshort0" >Burrow</input></br>
+                        <input type="radio" name="anshort" id="" value="anshort1" >Genius Loci</input></br>
+                        <input type="radio" name="anshort" id="" value="anshort2" >If Anything Happens I Love You</input></br>
+                        <input type="radio" name="anshort" id="" value="anshort3" >Opera</input></br>
+                        <input type="radio" name="anshort" id="" value="anshort4" >Yes-People</input></br>
+                    </div>
+
+                    <div class="category">
+                        <div> Best Original Score </div>
+                        <input type="radio" name="score" id="" value="score0" >Da 5 Bloods</input></br>
+                        <input type="radio" name="score" id="" value="score1" >Mank</input></br>
+                        <input type="radio" name="score" id="" value="score2" >Minari</input></br>
+                        <input type="radio" name="score" id="" value="score3" >News of the World</input></br>
+                        <input type="radio" name="score" id="" value="score4" >Soul</input></br>
+                    </div>
+
+                    <div class="category">
+                        <div> Best Original Song </div>
+                        <input type="radio" name="song" id="" value="song0" >"Husavik", Eurovision Song Contest: The Story of Fire Saga</input></br>
+                        <input type="radio" name="song" id="" value="song1" >"Fight For You", Judas and the Black Messiah</input></br>
+                        <input type="radio" name="song" id="" value="song2" >"Io Sì (Seen)", The Life Ahead</input></br>
+                        <input type="radio" name="song" id="" value="song3" >"Speak Now", One Night in Miami</input></br>
+                        <input type="radio" name="song" id="" value="song4" >"Hear My Voice", The Trial of the Chicago 7</input></br>
+                    </div>
+
+                    <div class="category">
+                        <div> Best Sound </div>
+                        <input type="radio" name="sedit" id="" value="sedit0" >Greyhound</input></br>
+                        <input type="radio" name="sedit" id="" value="sedit1" >Mank</input></br>
+                        <input type="radio" name="sedit" id="" value="sedit2" >News of the World</input></br>
+                        <input type="radio" name="sedit" id="" value="sedit3" >Sound of Metal</input></br>
+                        <input type="radio" name="sedit" id="" value="sedit4" >Soul</input></br>
+                    </div>
+
+                    <div class="category">
+                        <div> Best Production Design </div>
+                        <input type="radio" name="prod" id="" value="prod0" >The Father</input></br>
+                        <input type="radio" name="prod" id="" value="prod1" >Ma Rainey's Black Bottom</input></br>
+                        <input type="radio" name="prod" id="" value="prod2" >Mank</input></br>
+                        <input type="radio" name="prod" id="" value="prod3" >News of the World</input></br>
+                        <input type="radio" name="prod" id="" value="prod4" >Tenet</input></br>
+                    </div>
+
+                    <div class="category">
+                        <div> Best Cinematography </div>
+                        <input type="radio" name="cinem" id="" value="cinem0" >Judas and the Black Messiah</input></br>
+                        <input type="radio" name="cinem" id="" value="cinem1" >Mank</input></br>
+                        <input type="radio" name="cinem" id="" value="cinem2" >News of the World</input></br>
+                        <input type="radio" name="cinem" id="" value="cinem3" >Nomadland</input></br>
+                        <input type="radio" name="cinem" id="" value="cinem4" >The Trial of the Chicago 7</input></br>
+                    </div>
+
+                    <div class="category">
+                        <div> Best Makeup and HairStyling </div>
+                        <input type="radio" name="hair" id="" value="hair0" >Emma</input></br>
+                        <input type="radio" name="hair" id="" value="hair1" >Hillbilly Elegy</input></br>
+                        <input type="radio" name="hair" id="" value="hair2" >Ma Rainey's Black Bottom</input></br>
+                        <input type="radio" name="hair" id="" value="hair3" >Mank</input></br>
+                        <input type="radio" name="hair" id="" value="hair4" >Pinocchio</input></br>
+                    </div>
+
+                    <div class="category">
+                        <div> Best Costume Design </div>
+                        <input type="radio" name="costume" id="" value="costume0" >Emma</input></br>
+                        <input type="radio" name="costume" id="" value="costume1" >Mank</input></br>
+                        <input type="radio" name="costume" id="" value="costume2" >Ma Rainey's Black Bottom</input></br>
+                        <input type="radio" name="costume" id="" value="costume3" >Mulan</input></br>
+                        <input type="radio" name="costume" id="" value="costume4" >Pinocchio</input></br>
                     </div>
 
                     <div class="category">
                         <div> Best Film Editing </div>
-                        <input type="radio" name="fedit" id="" value="fedit0" >Ford v Ferrari</input></br>
-                        <input type="radio" name="fedit" id="" value="fedit1" >The Irishman</input></br>
-                        <input type="radio" name="fedit" id="" value="fedit2" >Jojo Rabbit</input></br>
-                        <input type="radio" name="fedit" id="" value="fedit3" >Joker</input></br>
-                        <input type="radio" name="fedit" id="" value="fedit4" >Parasite</input></br>
+                        <input type="radio" name="fedit" id="" value="fedit0" >The Father</input></br>
+                        <input type="radio" name="fedit" id="" value="fedit1" >Nomadland</input></br>
+                        <input type="radio" name="fedit" id="" value="fedit2" >Promising Young Woman</input></br>
+                        <input type="radio" name="fedit" id="" value="fedit3" >Sound of Metal</input></br>
+                        <input type="radio" name="fedit" id="" value="fedit4" >The Trial of the Chicago 7</input></br>
                     </div>
 
                     <div class="category">
-                        <div> Best Sound Editing </div>
-                        <input type="radio" name="sedit" id="" value="sedit0" >Ford v Ferrari</input></br>
-                        <input type="radio" name="sedit" id="" value="sedit1" >Joker</input></br>
-                        <input type="radio" name="sedit" id="" value="sedit2" >1917</input></br>
-                        <input type="radio" name="sedit" id="" value="sedit3" >Once Upon a Time in Hollywood</input></br>
-                        <input type="radio" name="sedit" id="" value="sedit4" >Star Wars: The Rise of Skywalker</input></br>
+                        <div> Best Visual Effects </div>
+                        <input type="radio" name="vfx" id="" value="vfx0" >Love and Monsters</input></br>
+                        <input type="radio" name="vfx" id="" value="vfx1" >The Midnight Sky</input></br>
+                        <input type="radio" name="vfx" id="" value="vfx2" >Mulan</input></br>
+                        <input type="radio" name="vfx" id="" value="vfx3" >The One and Only Ivan</input></br>
+                        <input type="radio" name="vfx" id="" value="vfx4" >Tenet</input></br>
                     </div>
 
+                    <!-- The Academy combined Sound Editing and Sound Mixing
                     <div class="category">
                         <div> Best Sound Mixing </div>
                         <input type="radio" name="mixing" id="" value="mixing0" >Ad Astra</input></br>
@@ -196,60 +255,7 @@
                         <input type="radio" name="mixing" id="" value="mixing3" >1917</input></br>
                         <input type="radio" name="mixing" id="" value="mixing4" >Once Upon a Time in Hollywood</input></br>
                     </div>
-
-                    <div class="category">
-                        <div> Best Production Design </div>
-                        <input type="radio" name="prod" id="" value="prod0" >The Irishman</input></br>
-                        <input type="radio" name="prod" id="" value="prod1" >Jojo Rabbit</input></br>
-                        <input type="radio" name="prod" id="" value="prod2" >1917</input></br>
-                        <input type="radio" name="prod" id="" value="prod3" >Once Upon a Time in Hollywood</input></br>
-                        <input type="radio" name="prod" id="" value="prod4" >Parasite</input></br>
-                    </div>
-
-                    <div class="category">
-                        <div> Best Original Score </div>
-                        <input type="radio" name="score" id="" value="score0" >Joker</input></br>
-                        <input type="radio" name="score" id="" value="score1" >Little Women</input></br>
-                        <input type="radio" name="score" id="" value="score2" >Marriage Story</input></br>
-                        <input type="radio" name="score" id="" value="score3" >1917</input></br>
-                        <input type="radio" name="score" id="" value="score4" >Star Wars: The Rise of Skywalker</input></br>
-                    </div>
-
-                    <div class="category">
-                        <div> Best Original Song </div>
-                        <input type="radio" name="song" id="" value="song0" >"I Can't Let You Throw Yourself Away," Toy Story 4</input></br>
-                        <input type="radio" name="song" id="" value="song1" >"(I'm Gonna) Love Me Again," Rocketman</input></br>
-                        <input type="radio" name="song" id="" value="song2" >"I'm Standing With You," Breakthrough</input></br>
-                        <input type="radio" name="song" id="" value="song3" >"Into the Unknown," Frozen 2</input></br>
-                        <input type="radio" name="song" id="" value="song4" >"Stand Up," Harriet</input></br>
-                    </div>
-
-                    <div class="category">
-                        <div> Best Makeup and Hair </div>
-                        <input type="radio" name="hair" id="" value="hair0" >Bombshell</input></br>
-                        <input type="radio" name="hair" id="" value="hair1" >Joker)</input></br>
-                        <input type="radio" name="hair" id="" value="hair2" >Judy</input></br>
-                        <input type="radio" name="hair" id="" value="hair3" >Maleficent: Mistress of Evil</input></br>
-                        <input type="radio" name="hair" id="" value="hair4" >1917</input></br>
-                    </div>
-
-                    <div class="category">
-                        <div> Best Costume Design </div>
-                        <input type="radio" name="costume" id="" value="costume0" >Jojo Rabbit</input></br>
-                        <input type="radio" name="costume" id="" value="costume1" >Once Upon a Time in Hollywood</input></br>
-                        <input type="radio" name="costume" id="" value="costume2" >The Irishman</input></br>
-                        <input type="radio" name="costume" id="" value="costume3" >Joker</input></br>
-                        <input type="radio" name="costume" id="" value="costume4" >Little Women</input></br>
-                    </div>
-
-                    <div class="category">
-                        <div> Best Visual Effects </div>
-                        <input type="radio" name="vfx" id="" value="vfx0" >Avengers: Endgame</input></br>
-                        <input type="radio" name="vfx" id="" value="vfx1" >The Irishman</input></br>
-                        <input type="radio" name="vfx" id="" value="vfx2" >The Lion King</input></br>
-                        <input type="radio" name="vfx" id="" value="vfx3" >1917</input></br>
-                        <input type="radio" name="vfx" id="" value="vfx4" >Star Wars: The Rise of Skywalker</input></br>
-                    </div>
+                    -->
 
                     <button id="submit" type=button onclick="submitSelections()">Submit</button>
 

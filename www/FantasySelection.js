@@ -1,4 +1,4 @@
-const HOST = "http://34.210.66.223";
+const HOST = "http://34.212.93.49";
 //const HOST = "http://localhost:8080";
 
 const STORAGE_KEY = "grantsFantasyOscarsSelections";

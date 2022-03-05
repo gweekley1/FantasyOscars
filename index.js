@@ -17,12 +17,20 @@ app.post("/submit", function(req, res){
     results.password = sha256(results.password);
     results["create_date"] = new Date();
 
-    var cutoffTime = new Date('2020-02-09T18:45:00Z');
+    // The server in AWS runs in UTC
+    var cutoffTime = new Date(Date.parse('2021-04-25T18:45:00-0500'));
     var currentTime = new Date();
 
     // Only accept the submission if the cutoff time hasn't been reached or this
     // submission is an update to the winners
     if (currentTime.getTime() <= cutoffTime.getTime() || results.name === "winners") {
+        
+        if (!results.name) {
+            res.writeHead(410, {"Content-Type": "text/html"});
+            res.end("You need a name ya dingus");
+        }
+    
+        
         var file = __dirname + "/results/" + results.name + ".txt";
         // Assert that user is new or has the correct password
         if (checkPassword(results, file)) {
@@ -30,13 +38,15 @@ app.post("/submit", function(req, res){
             fs.writeFile(file, JSON.stringify(results), function(err){
               if (err) {
                 console.log("Failed to save " + results.name + ".txt");
+                console.log(err);
+                res.writeHead(500, {"Content-Type": "text/html"});
+                res.end("Error saving results: " + err);
               } else {
                 console.log("Saved " + results.name + ".txt successfully");
+                res.writeHead(200, {"Content-Type": "text/html"});
+                res.end("Thank you, come again");
               }
             });
-
-            res.writeHead(200, {"Content-Type": "text/html"});
-            res.end("Thank you, come again");
 
         } else {
             res.writeHead(401, {"Content-Type": "text/html"});
@@ -51,7 +61,7 @@ app.post("/submit", function(req, res){
 
 /**
  * Evaluate every user selection and build an HTML table to return as a response
- * See 'functon evaluateResults' for more information on the table and its generation
+ * See 'function evaluateResults' for more information on the table and its generation
  */
 app.get("/results", function(req, res) {
     var allSelections = [];
@@ -71,7 +81,7 @@ app.get("/results", function(req, res) {
 
 
 /**
- * Validate that the request's username and passord are correct. and if so
+ * Validate that the request's username and password are correct. and if so
  * return their selections as JSON. Otherwise, return an error
  */
 app.post("/load", function(req, res) {
@@ -142,7 +152,7 @@ function checkPassword(results, file) {
  * returns: the HTML table as a String
  */
 function evaluateResults(allSelections) {
-    const NUM_CATEGORIES = 24;
+    const NUM_CATEGORIES = 23;
     var correctAnswers = new Array(allSelections.length);
     correctAnswers.fill(0);
 
@@ -155,7 +165,14 @@ function evaluateResults(allSelections) {
     delete winners.create_date;
 
     // Begin building the HTML table
-    var htmlTable = "<!DOCTYPE html><html><head><style>table,th,td{border:1px solid black;border-collapse:collapse}</style></head>"
+    var htmlTable = "<!DOCTYPE html><html><head title='Fantasy Oscars Results'><style>" +
+        "table,th,td {border:1px solid black;border-collapse:collapse} " +
+        "table>tbody>tr:nth-child(odd)> td:nth-child(odd) {background-color:#FFFFFF} " +
+        "table>tbody>tr:nth-child(odd)> td:nth-child(even){background-color:#EEEEEE} " +
+        "table>tbody>tr:nth-child(even)>td:nth-child(odd) {background-color:#e3eeff} " +
+        "table>tbody>tr:nth-child(even)>td:nth-child(even){background-color:#d3dded}" +
+        "td {padding: 3px 9px 3px 6px} " +
+        "</style></head>"
     htmlTable += "<body><table><tr><td></td>";
 
     // Add the name row
@@ -206,28 +223,27 @@ function evaluateResults(allSelections) {
  */
 const categoryNames = {
     picture:"Best Picture",
+    director:"Best Director",
     lactor:"Best Lead Actor",
     lactress:"Best Lead Actress",
     sactor:"Best Supporting Actor",
     sactress:"Best Supporting Actress",
-    director:"Best Director",
-    animated:"Best Animated Feature",
-    anshort:"Best Animated Short",
-    ascreen:"Best Adapted Screenplay",
     oscreen:"Best Original Screenplay",
-    cinem:"Best Cinematography",
+    ascreen:"Best Adapted Screenplay",
+    animated:"Best Animated Feature",
+    foreign:"Best International Feature",
     docfeat:"Best Documentary Feature",
     docshort:"Best Documentary Short",
     lashort:"Best Live-Action Short",
-    foreign:"Best Foreign Feature",
-    fedit:"Best Editing",
-    sedit:"Best Sound Editing",
-    mixing:"Best Sound Mixing",
-    prod:"Best Production Design",
+    anshort:"Best Animated Short",
     score:"Best Original Score",
     song:"Best Original Song",
+    sedit:"Best Sound",
+    prod:"Best Production Design",
+    cinem:"Best Cinematography",
     hair:"Best Hair and Makeup",
     costume:"Best Costume Design",
+    fedit:"Best Editing",
     vfx:"Best Visual Effects",
     name:"Name"
 }
@@ -236,128 +252,122 @@ const categoryNames = {
  * JSON mapping the HTML selection values to the names of the Nominee
  */
 const nomineeNames = {
-    picture0: "Ford v Ferrari",
-    picture1: "The Irishman",
-    picture2: "Jojo Rabbit",
-    picture3: "Joker",
-    picture4: "Little Women",
-    picture5: "Marriage Story",
-    picture6: "Once Upon a Time in Hollywood",
-    picture7: "1917",
-    picture8: "Parasite",
-    lactor0: 'Antonio Banderas, Pain and Glory',
-    lactor1: 'Leonardo DiCaprio, Once Upon a Time in Hollywood',
-    lactor2: "Adam Driver, Marriage Story",
-    lactor3: 'Joaquin Phoenix, Joker',
-    lactor4: 'Jonathan Pryce, The Two Popes',
-    lactress0: 'Cynthia Erivo, Harriet',
-    lactress1: 'Scarlett Johansson, Marriage Story',
-    lactress2: 'Saoirse Ronan, Little Women',
-    lactress3: 'Charlize Theron, Bombshell',
-    lactress4: 'Renée Zellweger, Judy',
-    sactor0: 'Tom Hanks, A Beautiful Day in the Neighborhood',
-    sactor1: 'Anthony Hopkins, The Two Popes',
-    sactor2: 'Al Pacino, The Irishman',
-    sactor3: 'Joe Pesci, The Irishman',
-    sactor4: 'Brad Pitt, Once Upon a Time in Hollywood',
-    sactress0: 'Kathy Bates, Richard Jewell',
-    sactress1: 'Laura Dern, Marriage Story',
-    sactress2: 'Scarlett Johansson, Jojo Rabbit',
-    sactress3: 'Florence Pugh, Little Women',
-    sactress4: 'Margot Robbie, Bombshell',
-    director0: 'Martin Scorsese, The Irishman',
-    director1: 'Todd Phillips, Joker',
-    director2: 'Sam Mendes, 1917',
-    director3: 'Quentin Tarantino, Once Upon a Time in Hollywood',
-    director4: 'Bong Joon-ho, Parasite',
-    animated0: 'How to Train Your Dragon: The Hidden World',
-    animated1: 'I Lost My Body',
-    animated2: 'Klaus',
-    animated3: 'Missing Link',
-    animated4: 'Toy Story 4',
-    anshort0: 'Dcera (Daughter)',
-    anshort1: 'Hair Love',
-    anshort2: 'Kitbull',
-    anshort3: 'Memorable',
-    anshort4: 'Sister',
-    ascreen0: 'The Irishman',
-    ascreen1: 'Jojo Rabbit',
-    ascreen2: "Joker",
-    ascreen3: 'Little Women',
-    ascreen4: 'The Two Popes',
-    oscreen0: 'Knives Out',
-    oscreen1: 'Marriage Story',
-    oscreen2: '1917',
-    oscreen3: 'Once Upon a Time in Hollywood',
-    oscreen4: 'Parasite',
-    cinem0: 'The Irishman',
-    cinem1: 'Joker',
-    cinem2: 'The Lighthouse',
-    cinem3: '1917',
-    cinem4: 'Once Upon a Time in Hollywood',
-    docfeat0: 'American Factory',
-    docfeat1: 'The Cave',
-    docfeat2: 'The Edge of Democracy',
-    docfeat3: 'For Sama',
-    docfeat4: 'Honeyland',
-    docshort0: 'In the Absence',
-    docshort1: 'Learning to Skateboard in a Warzone (if You\'re a Girl)',
-    docshort2: 'Life Overtakes Me',
-    docshort3: 'St. Louis Superman',
-    docshort4: 'Walk Run Cha-Cha',
-    lashort0: 'Brotherhood',
-    lashort1: 'Nefta Football Club',
-    lashort2: 'The Neighbors\' Window',
-    lashort3: 'Saria',
-    lashort4: 'A Sister',
-    foreign0: 'Corpus Christi (Poland)',
-    foreign1: 'Honeyland (North Macedonia)',
-    foreign2: 'Les Misérables (France)',
-    foreign3: 'Pain and Glory (Spain)',
-    foreign4: 'Parasite (South Korea) ',
-    fedit0: 'Ford v Ferrari',
-    fedit1: 'The Irishman',
-    fedit2: 'Jojo Rabbit',
-    fedit3: 'Joker',
-    fedit4: 'Parasite',
-    sedit0: 'Ford v Ferrari',
-    sedit1: 'Joker',
-    sedit2: '1917',
-    sedit3: 'Once Upon a Time in Hollywood',
-    sedit4: 'Star Wars: The Rise of Skywalker',
-    mixing0: 'Ad Astra',
-    mixing1: 'Ford v Ferrari',
-    mixing2: 'Joker',
-    mixing3: '1917',
-    mixing4: 'Once Upon a Time in Hollywood',
-    prod0: 'The Irishman',
-    prod1: 'Jojo Rabbit',
-    prod2: '1917',
-    prod3: 'Once Upon a Time in Hollywood',
-    prod4: 'Parasite',
-    score0: 'Joker',
-    score1: 'Little Women',
-    score2: 'Marriage Story',
-    score3: '1917',
-    score4: 'Star Wars: The Rise of Skywalker',
-    song0: '"I Can\'t Let You Throw Yourself Away," Toy Story 4',
-    song1: '"(I\'m Gonna) Love Me Again," Rocketman',
-    song2: '"I\'m Standing With You," Breakthrough',
-    song3: '"Into the Unknown," Frozen 2',
-    song4: '"Stand Up," Harriet',
-    hair0: 'Bombshell',
-    hair1: 'Joker',
-    hair2: 'Judy',
-    hair3: 'Maleficent: Mistress of Evil',
-    hair4: '1917',
-    costume0: 'Jojo Rabbit',
-    costume1: 'Once Upon a Time in Hollywood',
-    costume2: 'The Irishman',
-    costume3: 'Joker',
-    costume4: 'Little Women',
-    vfx0: 'Avengers: Endgame',
-    vfx1: 'The Irishman',
-    vfx2: 'The Lion King',
-    vfx3: '1917',
-    vfx4: 'Star Wars: The Rise of Skywalker'
+    picture0: "The Father",
+    picture1: "Judas and the Black Messiah",
+    picture2: "Mank",
+    picture3: "Minari",
+    picture4: "Nomadland",
+    picture5: "Promising Young Woman",
+    picture6: "Sound of Metal",
+    picture7: "The Trial of the Chicago 7",
+    lactor0: 'Riz Ahmed, Sound of Metal',
+    lactor1: 'Chadwick Boseman, Ma Rainey\'s Black Bottom',
+    lactor2: "Anthony Hopkins, The Father",
+    lactor3: 'Gary Oldman, Mank',
+    lactor4: 'Steven Yeun, Minari',
+    lactress0: 'Viola Davis, Ma Rainey\'s Black Bottom',
+    lactress1: 'Andra Day, The United States vs Billie Holiday',
+    lactress2: 'Vanessa Kirby, Pieces of a Woman',
+    lactress3: 'Frances McDormand, Nomadland',
+    lactress4: 'Carey Mulligan, Promising Young Woman',
+    sactor0: 'Sacha Baron Cohen, The Trial of the Chicago 7',
+    sactor1: 'Daniel Kaluuya, Judas and the Black Messiah',
+    sactor2: 'Leslie Odom, Jr, One Night in Miami',
+    sactor3: 'Paul Raci, Sound of Metal',
+    sactor4: 'Lakeith Stanfield, Judas and the Black Messiah',
+    sactress0: 'Maria Bakalova, Borat Subsequent Moviefilm',
+    sactress1: 'Glenn Close, Hillbilly Elegy',
+    sactress2: 'Olivia Colman, The Father',
+    sactress3: 'Amanda Seyfried, Mank',
+    sactress4: 'Youn Yuh-Jung, Minari',
+    director0: 'Thomas Vinterberg, Another Round',
+    director1: 'Emerald Fennell, Promising Young Woman',
+    director2: 'David Fincher, Mank',
+    director3: 'Lee Isaac Chung, Minari',
+    director4: 'Chloé Zhao, Nomadland',
+    animated0: 'Onward',
+    animated1: 'Over the Moon',
+    animated2: 'A Shaun the Sheep Movie: Farmageddon',
+    animated3: 'Soul',
+    animated4: 'Wolfwalkers',
+    anshort0: 'Burrow',
+    anshort1: 'Genius Loci',
+    anshort2: 'If Anything Happens I Love You',
+    anshort3: 'Opera',
+    anshort4: 'Yes-People',
+    ascreen0: 'Borat Subsequent Moviefilm',
+    ascreen1: 'The Father',
+    ascreen2: "Nomadland",
+    ascreen3: 'One Night in Miami',
+    ascreen4: 'The White Tiger',
+    oscreen0: 'Judas and the Black Messiah',
+    oscreen1: 'Minari',
+    oscreen2: 'Promising Young Woman',
+    oscreen3: 'Sound of Metal',
+    oscreen4: 'The Trial of the Chicago 7',
+    cinem0: 'Judas and the Black Messiah',
+    cinem1: 'Mank',
+    cinem2: 'News of the World',
+    cinem3: 'Nomadland',
+    cinem4: 'The Trial of the Chicago 7',
+    docfeat0: 'Collective',
+    docfeat1: 'Crip Camp',
+    docfeat2: 'The Mole Agent',
+    docfeat3: 'My Octopus Teacher',
+    docfeat4: 'Time',
+    docshort0: 'Colette',
+    docshort1: 'A Concerto Is a Conversation',
+    docshort2: 'Do Not Split',
+    docshort3: 'Hunger Ward',
+    docshort4: 'A Love Song for Latasha',
+    lashort0: 'Feeling Through',
+    lashort1: 'The Letter Room',
+    lashort2: 'The Present',
+    lashort3: 'Two Distant Strangers',
+    lashort4: 'White Eye',
+    foreign0: 'Another Round (Denmark)',
+    foreign1: 'Better Days (Hong Kong)',
+    foreign2: 'Collective (Romania)',
+    foreign3: 'The Man Who Sold His Skin (Tunisia)',
+    foreign4: 'Quo Vadis, Aida? (Bosnia and Herzegovina)',
+    fedit0: 'The Father',
+    fedit1: 'Nomadland',
+    fedit2: 'Promising Young Woman',
+    fedit3: 'Sound of Metal',
+    fedit4: 'The Trial of the Chicago 7',
+    sedit0: 'Greyhound',
+    sedit1: 'Mank',
+    sedit2: 'News of the World',
+    sedit3: 'Sound of Metal',
+    sedit4: 'Soul',
+    prod0: 'The Father',
+    prod1: 'Ma Rainey\'s Black Bottom',
+    prod2: 'Mank',
+    prod3: 'News of the World',
+    prod4: 'Tenet',
+    score0: 'Da 5 Bloods',
+    score1: 'Mank',
+    score2: 'Minari',
+    score3: 'News of the World',
+    score4: 'Soul',
+    song0: '"Husavik", Eurovision Song Contest: The Story of Fire Saga',
+    song1: '"Fight For You", Judas and the Black Messiah',
+    song2: '"Io Sì (Seen)", The Life Ahead',
+    song3: '"Speak Now", One Night in Miami',
+    song4: '"Hear My Voice", The Trial of the Chicago 7',
+    hair0: 'Emma',
+    hair1: 'Hillbilly Elegy',
+    hair2: 'Ma Rainey\'s Black Bottom',
+    hair3: 'Mank',
+    hair4: 'Pinocchio',
+    costume0: 'Emma',
+    costume1: 'Mank',
+    costume2: 'Ma Rainey\'s Black Bottom',
+    costume3: 'Mulan',
+    costume4: 'Pinocchio',
+    vfx0: 'Love and Monsters',
+    vfx1: 'The Midnight Sky',
+    vfx2: 'Mulan',
+    vfx3: 'The One and Only Ivan',
+    vfx4: 'Tenet'
 }
