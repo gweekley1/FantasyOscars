@@ -1,4 +1,5 @@
 var express = require("express");
+var favicon = require('serve-favicon');
 const bodyParser = require("body-parser"),
       fs = require("fs"),
       sha256 = require("sha256");
@@ -7,6 +8,8 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("www"));
+app.use(favicon(__dirname + '/www/favicon.ico'));
+app.get('/', (_, res)=> res.sendFile(__dirname + '/www/index.html'));
 
 /**
  * Submit user selections. Saves the results to __dirname/results/<name>.txt
@@ -28,6 +31,7 @@ app.post("/submit", function(req, res){
         if (!results.name) {
             res.writeHead(410, {"Content-Type": "text/html"});
             res.end("You need a name ya dingus");
+            return;
         }
     
         
@@ -165,14 +169,19 @@ function evaluateResults(allSelections) {
     delete winners.create_date;
 
     // Begin building the HTML table
-    var htmlTable = "<!DOCTYPE html><html><meta charset=\"utf-8\"><head title='Fantasy Oscars Results'><style>" +
+    var htmlTable = "<!DOCTYPE html><html><meta charset=\"utf-8\"><head title='Fantasy Oscars Results'>" +
+        "<style>" +
         "table,th,td {border:1px solid black;border-collapse:collapse} " +
         "table>tbody>tr:nth-child(odd)> td:nth-child(odd) {background-color:#FFFFFF} " +
         "table>tbody>tr:nth-child(odd)> td:nth-child(even){background-color:#EEEEEE} " +
         "table>tbody>tr:nth-child(even)>td:nth-child(odd) {background-color:#e3eeff} " +
         "table>tbody>tr:nth-child(even)>td:nth-child(even){background-color:#d3dded}" +
         "td {padding: 3px 9px 3px 6px} " +
-        "</style></head>";
+        "tbody tr > :first-child { position: sticky; z-index:1; left:0; border:1px solid black}" +
+        "</style>" +
+        "<link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">" +
+        "<title>2023 Fantasy Oscars Selection</title>" + 
+        "</head>";
     htmlTable += "<body><table><tr><td></td>";
 
     // Add the name row
@@ -276,7 +285,7 @@ const categoryNames = {
     
     lactress0: 'Cate Blanchett, Tár',
     lactress1: 'Ana de Armas, Blonde',
-    lactress2: 'Andrea Riseborough, To leslie',
+    lactress2: 'Andrea Riseborough, To Leslie',
     lactress3: 'Michelle Williams, The Fabelmans',
     lactress4: 'Michelle Yeoh, Everything Everywhere All at Once',
     

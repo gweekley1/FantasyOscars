@@ -3,8 +3,10 @@
     <meta charset="utf-8">
 
     <head title="Fantasy Oscars Selection">
+        <title>2023 Fantasy Oscars Selection</title>
 
         <link rel = "stylesheet" type = "text/css" href = "FantasySelection.css" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
 
         <script src="./FantasySelection.js"></script>
         <script src="./jquery-3.3.1.min.js"></script>
@@ -28,6 +30,8 @@
                         <input id="name" maxlength="50" placeholder="Enter your name here"/> </br>
                         <label for="password">Password:</label>
                         <input id="password" type="password" size="25em" placeholder="Password protect your results"/>
+                        <button id=toggler type="button">Show Password</button>
+                        <hr/>
                         <button type="button" onclick="loadSelectionsFromServer()">Load saved selections</button>
                         <p>*Entering your name and password and clicking 'Load saved selections' will fill out this page with your
                             saved selections

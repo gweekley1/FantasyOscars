@@ -156,7 +156,7 @@ function buildPage()
         
         lactress0: 'Cate Blanchett, Tár',
         lactress1: 'Ana de Armas, Blonde',
-        lactress2: 'Andrea Riseborough, To leslie',
+        lactress2: 'Andrea Riseborough, To Leslie',
         lactress3: 'Michelle Williams, The Fabelmans',
         lactress4: 'Michelle Yeoh, Everything Everywhere All at Once',
         
@@ -309,4 +309,20 @@ function buildPage()
 
         parentForm.appendChild(categorySelection);
     });
+
+    showHidePassword = () => {
+        var password = document.getElementById('password');
+        var toggler = document.getElementById('toggler');
+    
+        if (password.type == 'password') {
+            password.setAttribute('type', 'text');
+            toggler.innerHTML = "Hide Password";
+        } else {
+            password.setAttribute('type', 'password');
+            toggler.innerHTML = "Show Password";
+        }
+    };
+
+    var toggler = document.getElementById('toggler');
+    toggler.addEventListener('click', showHidePassword);
 }
